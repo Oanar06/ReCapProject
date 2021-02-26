@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -44,7 +45,15 @@ namespace Business.Concrete
             return _carDal.GetAll(c => c.ModelYear >= min && c.ModelYear <= max);
         }
 
-      
+        public List<Car> GetByModelYear(decimal min, decimal max)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<CarDetailDto> GetCarDetailDtos()
+        {
+            return _carDal.GetCarDetailDtos();
+        }
 
         public List<Car> GetCarsByBrandId(int BrandId)
         {
