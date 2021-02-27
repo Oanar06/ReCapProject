@@ -12,7 +12,31 @@ namespace ConsoleUI
         {
             //CarTest2();
             //CarTest1();
-            DtosTest();
+            //DtosTest();
+            //CarTest3();
+
+          
+
+        }
+
+        private static void CarTest3()
+        {
+            CarManager carManager = new CarManager(new EfCarDal());
+
+            var result = carManager.GetAll();
+
+            if (result.Success == false)
+            {
+                foreach (var car in result.Data)
+                {
+                    Console.WriteLine("Araç Adı : {0} Günlük Ücreti : {1} Detaylar : {2}", car.CarName, car.DailyPrice, car.Description);
+
+                }
+            }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
         }
 
         private static void DtosTest()
@@ -20,7 +44,7 @@ namespace ConsoleUI
             CarManager carManager = new CarManager(new EfCarDal());
             BrandManager brandManager = new BrandManager(new EfBrandDal());
             ColorManager colorManager = new ColorManager(new EfColorDal());
-            foreach (var car in carManager.GetCarDetailDtos())
+            foreach (var car in carManager.GetCarDetails().Data)
 
             {
                 Console.WriteLine(car.CarName + "/" + car.DailyPrice + "/" + car.ColorName + "/" + car.Description);
@@ -37,7 +61,7 @@ namespace ConsoleUI
         private static void CarTest1()
         {
             CarManager carManager = new CarManager(new EfCarDal());
-            foreach (var car in carManager.GetAll())
+            foreach (var car in carManager.GetAll().Data)
             {
                 //Console.WriteLine(car.Description + car.DailyPrice +"TL"+"/"+ car.ModelYear);
                 Console.WriteLine();
